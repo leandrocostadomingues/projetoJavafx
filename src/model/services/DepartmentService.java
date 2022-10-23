@@ -1,0 +1,35 @@
+package model.services;
+
+import java.util.List;
+
+import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
+import model.entities.Department;
+
+public class DepartmentService {
+	
+	
+	 private DepartmentDao  dao = DaoFactory.createDepartmentDao();
+
+	public List<Department> findall() {
+		
+		return dao.findAll();
+	}
+	 public void saveOrUpDate(Department obj) { // este metodo e para inserir ou atualizar o departamento
+		 
+		if (obj.getId()==null) {
+			dao.insert(obj);
+			
+		} else {
+			dao.update(obj);
+
+		} 
+		 
+		 
+	 }
+	public void remove (Department obj) {
+		
+		dao.deleteById(obj.getId());
+	}
+
+}
